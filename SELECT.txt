@@ -1,0 +1,12 @@
+SELECT
+    ht.CadastroId,
+    ds.Descricao AS DiaSemana,
+    COALESCE(SUM(ht.Horas), 0) AS TotalHoras
+FROM
+    DiasSemana ds
+LEFT JOIN
+    HorariosTrabalho ht ON ds.DiaId = ht.DiaId
+GROUP BY
+    ht.CadastroId, ds.DiaId
+ORDER BY
+    ht.CadastroId, ds.DiaId
